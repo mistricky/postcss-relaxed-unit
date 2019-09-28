@@ -26,36 +26,32 @@ export interface CSSValue {
   unit: string;
 }
 
-export function optionsParser(options: Options): ParsedOptions {
-  const { rules } = options;
+export function optionsParser(options: Options | undefined): ParsedOptions {
+  const { rules = [] } = options || {};
   const parsedOptions = {};
 
-  for (const unitName of Object.keys(rules)) {
-    parsedOptions[unitName] = operationParser(rules[unitName]);
+  for (const rule of rules) {
+    const key = Object.keys(rule)[0];
+    parsedOptions[key] = operationParser(key, rule[key]);
   }
 
   return parsedOptions;
 }
 
+export function extractCSSValue(target: string): CSSValue {
+  const [value, unit] = target.split(/(?<=\d)(?=[a-zA-Z])/);
+
+  return {
+    value: +value,
+    unit: unit
+  };
+}
+
 function operationParser(
+  unitName: string,
   unitValue: string
 ): RuntimeOperationFunction | undefined {
-  const operationParts = unitValue.split(/(?<=[^\d])\.(?=[^\d])/);
-
-  if (!operationParts.length) {
-    parseError();
-
-    return;
-  }
-
-  const unit = operationParts[0];
-
-  if (operationParts.length === 1) {
-    // replace unit direct
-    return (target: string) => extractCSSValue(target).value + unit;
-  }
-
-  const methods = operationParts.slice(1);
+  const methods = unitValue.split(/(?<=[^\d])\.(?=[^\d])/);
   const funcs = [];
 
   for (const method of methods) {
@@ -74,8 +70,8 @@ function operationParser(
       return;
     }
 
-    if (unit !== rawUnit) {
-      return rawUnit;
+    if (unitName !== rawUnit) {
+      return target;
     }
 
     const processResult = pipe(
@@ -85,12 +81,12 @@ function operationParser(
 
     return typeof processResult === "string"
       ? processResult
-      : processResult + unit;
+      : processResult + unitName;
   };
 }
 
 function methodParser(methodString): MethodParseResult | undefined {
-  const result = methodString.match(/[a-zA-Z]+\(([^()]+?)\)/);
+  const result = methodString.match(/([a-zA-Z]+)\(([^()]+?)\)/);
 
   if (!result) {
     parseError();
@@ -122,22 +118,29 @@ function parseCSSError() {
 }
 
 function pipe<T>(initValue: T, funcs: Function[]): T {
-  return funcs.reduce((total, _, i, funcs) => funcs[i](total), initValue);
+  return funcs.reduce(
+    (total, _, i, funcs) =>
+      funcs[i](
+        typeof total === "string" ? extractCSSValue(total).value : total
+      ),
+    initValue
+  );
 }
 
-function extractCSSValue(target: string): CSSValue {
-  const [value, unit] = target.split(/(?<=\d)(?=\w)/);
+function optionArg2NumGuard(target: unknown): number {
+  const result = +target;
 
-  return {
-    value: +value,
-    unit: unit
-  };
+  if (isNaN(result)) {
+    return 0;
+  }
+
+  return result;
 }
 
 const operation: Operation = {
-  sub: (target: number, opNum: number) => target - opNum,
-  add: (target: number, opNum: number) => target + opNum,
-  div: (target: number, opNum: number) => target / opNum,
-  mul: (target: number, opNum: number) => target * opNum,
+  sub: (target: number, opNum: number) => target - optionArg2NumGuard(opNum),
+  add: (target: number, opNum: number) => target + optionArg2NumGuard(opNum),
+  div: (target: number, opNum: number) => target / optionArg2NumGuard(opNum),
+  mul: (target: number, opNum: number) => target * optionArg2NumGuard(opNum),
   unit: (target: number, unit: string) => target + unit
 };
