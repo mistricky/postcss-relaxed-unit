@@ -64,13 +64,13 @@ function operationParser(
     const { value, unit: rawUnit } = extractCSSValue(target);
 
     // runtime error
-    if (!value || !rawUnit || isNaN(value) || rawUnit === "") {
-      parseCSSError();
-
-      return;
-    }
-
-    if (unitName !== rawUnit) {
+    if (
+      !value ||
+      !rawUnit ||
+      isNaN(value) ||
+      rawUnit === "" ||
+      unitName !== rawUnit
+    ) {
       return target;
     }
 
