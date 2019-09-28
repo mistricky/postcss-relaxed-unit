@@ -1,0 +1,12 @@
+{
+  "compileOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "module": "commonjs",
+    "target": "es6"
+  },
+  "includes": ["src/**/*"] ,
+  "exclude": ["node_modules"]
+}
