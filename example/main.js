@@ -12,10 +12,17 @@ const writeFile = promisify(FS.writeFile);
 
     await writeFile(
       outputFileName,
-      Postcss(postcssRelaxedUnit()).process(cssContent).css
+      Postcss(
+        postcssRelaxedUnit({
+          rules: [{ rx: "add(1).sub(2).mul(3).div(9).unit(rem)" }]
+        })
+      ).process(cssContent).css
     );
 
-    console.log("successful!");
+    console.log(`
+    successful!
+    ============== out put ==============
+    `);
     console.info(await readFile(outputFileName, "utf8"));
   } catch (e) {
     console.error(e);
