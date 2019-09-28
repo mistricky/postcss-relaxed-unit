@@ -9,10 +9,14 @@
     "postcss-plugin",
     "unit"
   ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest && eslint *.js",
     "dev": "tsc --watch",
-    "example": "node ./example/main.js"
+    "publish": "tsc && publish",
+    "example": "cd ./example && node ./main.js"
   },
   "author": "HaoDaWang <1306036576@qq.com>",
   "license": "MIT",
