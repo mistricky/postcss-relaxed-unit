@@ -1,6 +1,7 @@
 {
   "name": "postcss-relaxed-unit",
   "version": "0.0.0",
+  "main": "dist/main.js",
   "description": "PostCSS plugin Make write csss easier with custom unit",
   "keywords": [
     "postcss",
@@ -9,7 +10,9 @@
     "unit"
   ],
   "scripts": {
-    "test": "jest && eslint *.js"
+    "test": "jest && eslint *.js",
+    "dev": "tsc --watch",
+    "example": "node ./example/main.js"
   },
   "author": "HaoDaWang <1306036576@qq.com>",
   "license": "MIT",
@@ -33,7 +36,8 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.0",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "typescript": "^3.6.3"
   },
   "eslintConfig": {
     "extends": "eslint-config-postcss/es5"
