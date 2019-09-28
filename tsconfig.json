@@ -5,7 +5,8 @@
     "lib": ["dom", "esnext"],
     "module": "commonjs",
     "target": "es6",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "declaration": true
   },
   "includes": ["src/**/*"],
   "exclude": ["node_modules"]

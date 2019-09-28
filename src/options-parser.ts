@@ -127,7 +127,7 @@ function pipe<T>(initValue: T, funcs: Function[]): T {
   );
 }
 
-function optionArg2NumGuard(target: unknown): number {
+function optionArg2NumGuard(target: number | string): number {
   const result = +target;
 
   if (isNaN(result)) {
