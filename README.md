@@ -6,7 +6,7 @@
 
 Postcss-relaxed-unit is a postcss plugin for unit tranformation and make write css easier with custom unit.
 
-You can defined a rule, you can define a rule to determine the mapping relationship between custom unit and target unit, and you can use some operators to calculate the target value (like `add`, `sub`, `mul`, `div`, `unit`), so you can write style relaxed without care about calculate unit.
+You can define a rule to determine the mapping relationship between custom unit and target unit, and you can use some operators to calculate the target value (like `add`, `sub`, `mul`, `div`, `unit`), so you can write style relaxed without care about calculate unit.
 
 ## Motivation
 
