@@ -4,6 +4,8 @@
 [ci-img]: https://travis-ci.org/youncccat/postcss-relaxed-unit.svg
 [ci]: https://travis-ci.org/youncccat/postcss-relaxed-unit
 
+[英文文档](https://github.com/youncccat/postcss-relaxed-unit/blob/master/README.md) | 中文文档
+
 Postcss-relaxed-unit 是一个能够转换 css 单位的 postcss 插件，自定义单位下写 css 变的很简单。
 
 你可以定义一个自定义单位和目标单位之间的一个映射关系，还可以使用 `add`, `sub`, `mul`, `div`, `unit` 这样的运算符来计算目标单位，你可以不用去关心计算单位的事情，这一切都让写样式变的非常简单。
