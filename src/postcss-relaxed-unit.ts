@@ -1,6 +1,8 @@
 import { IPlugin, Parser, Options } from "./plugin";
-import { Result, Root } from "postcss";
+import { Root } from "postcss";
 import { optionsParser, extractCSSValue } from "./options-parser";
+
+const noop = (target: string): string => target;
 
 export class PostcssRelaxedUnit implements IPlugin {
   pluginName = "postcss-relaxed-unit";
@@ -8,8 +10,14 @@ export class PostcssRelaxedUnit implements IPlugin {
   run(options?: Options): Parser {
     const parsers = optionsParser(options);
 
-    return (root: Root, result: Result) => {
-      root.walkDecls(declare => (declare.value = parsers["rx"](declare.value)));
-    };
+    return (root: Root) =>
+      root.walkDecls(declare => {
+        return (declare.value = declare.value.replace(
+          /(\d+[a-zA-Z]+)/g,
+          (_: string, cap: string) => {
+            return (parsers[extractCSSValue(cap).unit] || noop)(cap);
+          }
+        ));
+      });
   }
 }

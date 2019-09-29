@@ -27,12 +27,11 @@ export interface CSSValue {
 }
 
 export function optionsParser(options: Options | undefined): ParsedOptions {
-  const { rules = [] } = options || {};
+  const { rules = {} } = options || {};
   const parsedOptions = {};
 
-  for (const rule of rules) {
-    const key = Object.keys(rule)[0];
-    parsedOptions[key] = operationParser(key, rule[key]);
+  for (const unitName of Object.keys(rules)) {
+    parsedOptions[unitName] = operationParser(unitName, rules[unitName]);
   }
 
   return parsedOptions;
@@ -60,30 +59,29 @@ function operationParser(
     funcs.push((target: number) => operation[methodName](target, arg));
   }
 
-  return (target: string) =>
-    target.replace(new RegExp(`([\\d.]+${unitName})`, "g"), (_, cap) => {
-      const { value, unit: rawUnit } = extractCSSValue(cap);
+  return (target: string) => {
+    const { value, unit: rawUnit } = extractCSSValue(target);
 
-      // runtime error
-      if (
-        value === undefined ||
-        rawUnit === undefined ||
-        isNaN(value) ||
-        rawUnit === "" ||
-        unitName !== rawUnit
-      ) {
-        return target;
-      }
+    // runtime error
+    if (
+      value === undefined ||
+      rawUnit === undefined ||
+      isNaN(value) ||
+      rawUnit === "" ||
+      unitName !== rawUnit
+    ) {
+      return target;
+    }
 
-      const processResult = pipe(
-        value,
-        funcs
-      );
+    const processResult = pipe(
+      value,
+      funcs
+    );
 
-      return typeof processResult === "string"
-        ? processResult
-        : processResult + unitName;
-    });
+    return typeof processResult === "string"
+      ? processResult
+      : processResult + unitName;
+  };
 }
 
 function methodParser(methodString): MethodParseResult | undefined {

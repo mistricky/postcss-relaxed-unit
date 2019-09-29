@@ -12,5 +12,5 @@ export interface Rule {
 }
 
 export interface Options {
-  rules: Rule[];
+  rules: Rule;
 }
