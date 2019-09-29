@@ -4,7 +4,7 @@
 [ci-img]: https://travis-ci.org/youncccat/postcss-relaxed-unit.svg
 [ci]: https://travis-ci.org/youncccat/postcss-relaxed-unit
 
-英文文档 | [中文文档](https://github.com/youncccat/postcss-relaxed-unit/blob/master/doc/readme-zh.md)
+English doc | [中文文档](https://github.com/youncccat/postcss-relaxed-unit/blob/master/doc/readme-zh.md)
 
 Postcss-relaxed-unit is a postcss plugin for unit tranformation and make write css easier with custom unit.
 

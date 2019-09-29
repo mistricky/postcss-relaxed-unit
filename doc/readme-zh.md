@@ -4,7 +4,7 @@
 [ci-img]: https://travis-ci.org/youncccat/postcss-relaxed-unit.svg
 [ci]: https://travis-ci.org/youncccat/postcss-relaxed-unit
 
-[英文文档](https://github.com/youncccat/postcss-relaxed-unit/blob/master/README.md) | 中文文档
+[English doc](https://github.com/youncccat/postcss-relaxed-unit/blob/master/README.md) | 中文文档
 
 Postcss-relaxed-unit 是一个能够转换 css 单位的 postcss 插件，自定义单位下写 css 变的很简单。
 
