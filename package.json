@@ -1,6 +1,6 @@
 {
   "name": "postcss-relaxed-unit",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "dist/main.js",
   "description": "PostCSS plugin Make write csss easier with custom unit",
   "keywords": [
