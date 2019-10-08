@@ -44,7 +44,26 @@ const RelaxedUnit = require("postcss-relaxed-unit");
 module.exports = {
   plugins: [
     RelaxedUnit({
-      rules: [{ rx: "add(1).sub(2).mul(3).div(9).unit('rem')" }]
+      rules: [{ rx: "add(1).sub(2).mul(3).div(9).unit(rem)" }]
+    })
+  ]
+};
+```
+
+### 多个规则
+
+你可以定义更多的规则到你的应用
+
+```javascript
+const RelaxedUnit = require("postcss-relaxed-unit");
+
+module.exports = {
+  plugins: [
+    RelaxedUnit({
+      rules: {
+        rx: "add(1).sub(2).mul(3).div(9).unit(rem)",
+        ex: "div(100).unit(rem)"
+      }
     })
   ]
 };
@@ -72,9 +91,7 @@ module.exports = {
 
 ## 配置参数
 
-- `rules Array<Rule>` 规则的容器，所有的规则都写在这里
-
-- `rule {[custom unit name]: 'operators'}` 自定义单位到目标单位的映射
+- `rules {[custom unit name]: 'operators'}` 规则的容器，所有的规则都写在这里
 
 - `add Operator` 目标值的加运算
 
@@ -123,7 +140,7 @@ so, if you call the operator function like `add(aas)` , it will compile passing,
 如果你这样调用 add 函数 `add(aas)`, 它会编译通过，这个 `aas` 会转化为 0
 
 ```javascript
-{"rx": "add(aas)"} => {"rx": "add(0)"}
+{"rx": "add(aas).unit(px)"} => {"rx": "add(0).unit(px)"}
 ```
 
 ## 示例

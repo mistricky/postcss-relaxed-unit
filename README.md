@@ -42,7 +42,26 @@ const RelaxedUnit = require("postcss-relaxed-unit");
 module.exports = {
   plugins: [
     RelaxedUnit({
-      rules: [{ rx: "add(1).sub(2).mul(3).div(9).unit('rem')" }]
+      rules: { rx: "add(1).sub(2).mul(3).div(9).unit(rem)" }
+    })
+  ]
+};
+```
+
+### Multiple rules
+
+You can define more rules :)
+
+```javascript
+const RelaxedUnit = require("postcss-relaxed-unit");
+
+module.exports = {
+  plugins: [
+    RelaxedUnit({
+      rules: {
+        rx: "add(1).sub(2).mul(3).div(9).unit(rem)",
+        ex: "div(100).unit(rem)"
+      }
     })
   ]
 };
@@ -61,7 +80,7 @@ module.exports = {
     postcss: {
       plugins: {
         'postcss-relaxed-unit': {
-          rules: [{ rx: 'div(100).unit(rem)' }],
+          rules: { rx: 'div(100).unit(rem)' },
         },
     },
   },
@@ -70,9 +89,7 @@ module.exports = {
 
 ## Options
 
-- `rules Array<Rule>` custom unit to target unit mapping container
-
-- `rule {[custom unit name]: 'operators'}` custom unit to target unit mapping
+- `rules {[custom unit name]: 'operators'}` custom unit to target unit mapping container
 
 - `add Operator` target value plus `+`
 
@@ -89,7 +106,7 @@ custom unit will output does not change missing `unit` Operator, `e.g.`
 ```json
 {
   "postcss-relaxed-unit": {
-    "rules": [{ "rx": "add(10).sub(2)" }]
+    "rules": { "rx": "add(10).sub(2)" }
   }
 }
 ```
@@ -119,7 +136,7 @@ type OperatorFunction = (arg: number | string) => string;
 so, if you call the operator function like `add(aas)` , it will compile passing, the `aas` wiil be convert to `0`.
 
 ```javascript
-{"rx": "add(aas)"} => {"rx": "add(0)"}
+{"rx": "add(aas).unit(px)"} => {"rx": "add(0).unit(px)"}
 ```
 
 ## Example
