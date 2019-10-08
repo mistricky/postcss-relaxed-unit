@@ -44,7 +44,7 @@ const RelaxedUnit = require("postcss-relaxed-unit");
 module.exports = {
   plugins: [
     RelaxedUnit({
-      rules: [{ rx: "add(1).sub(2).mul(3).div(9).unit(rem)" }]
+      rules: { rx: "add(1).sub(2).mul(3).div(9).unit(rem)" }
     })
   ]
 };
@@ -82,7 +82,7 @@ module.exports = {
     postcss: {
       plugins: {
         'postcss-relaxed-unit': {
-          rules: [{ rx: 'div(100).unit(rem)' }],
+          rules: { rx: 'div(100).unit(rem)' },
         },
     },
   },
@@ -108,7 +108,7 @@ module.exports = {
 ```json
 {
   "postcss-relaxed-unit": {
-    "rules": [{ "rx": "add(10).sub(2)" }]
+    "rules": { "rx": "add(10).sub(2)" }
   }
 }
 ```
