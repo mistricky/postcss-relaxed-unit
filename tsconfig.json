@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDirs": ["src", "tests"],
     "outDir": "dist",
     "lib": ["dom", "esnext"],
     "module": "commonjs",
