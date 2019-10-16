@@ -13,10 +13,9 @@ export class PostcssRelaxedUnit implements IPlugin {
     return (root: Root) =>
       root.walkDecls(declare => {
         return (declare.value = declare.value.replace(
-          /(\d+[a-zA-Z]+)/g,
-          (_: string, cap: string) => {
-            return (parsers[extractCSSValue(cap).unit] || noop)(cap);
-          }
+          /([0-9a-zA-Z.]+)/g,
+          (_: string, cap: string) =>
+            (parsers[extractCSSValue(cap).unit] || noop)(cap)
         ));
       });
   }
