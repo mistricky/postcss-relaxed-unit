@@ -14,6 +14,10 @@ Postcss-relaxed-unit 是一个能够转换 css 单位的 postcss 插件，自定
 
 有些时候，我们需要去关心计算样式的值，就像 `px` 到 `rem` 的转换，`rem` 到 `vm` 的转换，在移动端，我们经常会去计算 `px` 到 xxx 的转换（比如 UI 的设计稿是 px，但是你需要自己计算成 rem），`postcss-relaxed-unit` 可以帮助你更容易的计算，你只需要定义一个描述自定义单位到目标单位的映射规则，这就是你需要做的全部的事情了，其他都由 `Postcss-relaxed-unit` 帮你做了:tada:。
 
+## 精度溢出 👌
+
+你不用关心精度溢出的问题，因为 `postcss-relaxed-unit` 封装了 `bignumber.js`。
+
 ## 安装
 
 `postcss-relaxed-unit` 发布在 `npm` 上，所以你可以使用 `yarn` 或者 `npm` 来安装它

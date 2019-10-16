@@ -14,6 +14,10 @@ You can define a rule to determine the mapping relationship between custom unit 
 
 Sometimes, we need to care about calculating the style values, for example, `px` to `rem`， `rem` to `vw` , `px` to whatever that mobile side need and we don't need many plugins. so, `postcss-relaxed-unit` can help you forget that, you just need define a rule that describes the custom unit to target unit mapping! that's all! :tada:
 
+## Precision overflow 👌
+
+You don't have to care about precision overflow, because `postcss-relaxed-unit` wraps `bignumber.js`.
+
 ## Install
 
 `postcss-relaxed-unit` is publish to `npm`，so you can install it using `npm` or `yarn`
