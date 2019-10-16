@@ -1,4 +1,5 @@
 import { Options } from "./plugin";
+import BigNumber from "bignumber.js";
 
 export type OperationFunction = (...args: unknown[]) => number | string;
 
@@ -116,7 +117,7 @@ function parseCSSError() {
   throw new Error("Parse Error: Please check your cssom");
 }
 
-function pipe<T>(initValue: T, funcs: Function[]): T {
+function pipe<T extends number | string>(initValue: T, funcs: Function[]): T {
   return funcs.reduce(
     (total, _, i, funcs) =>
       funcs[i](
@@ -137,9 +138,13 @@ function optionArg2NumGuard(target: number | string): number {
 }
 
 const operation: Operation = {
-  sub: (target: number, opNum: number) => target - optionArg2NumGuard(opNum),
-  add: (target: number, opNum: number) => target + optionArg2NumGuard(opNum),
-  div: (target: number, opNum: number) => target / optionArg2NumGuard(opNum),
-  mul: (target: number, opNum: number) => target * optionArg2NumGuard(opNum),
+  sub: (target: number, opNum: number) =>
+    +new BigNumber(target).minus(optionArg2NumGuard(opNum)),
+  add: (target: number, opNum: number) =>
+    +new BigNumber(target).plus(optionArg2NumGuard(opNum)),
+  div: (target: number, opNum: number) =>
+    +new BigNumber(target).div(optionArg2NumGuard(opNum)),
+  mul: (target: number, opNum: number) =>
+    +new BigNumber(target).multipliedBy(optionArg2NumGuard(opNum)),
   unit: (target: number, unit: string) => target + unit
 };

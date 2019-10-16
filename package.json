@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/youncccat/postcss-relaxed-unit",
   "dependencies": {
+    "bignumber.js": "^9.0.0",
     "postcss": "^7.0.6"
   },
   "devDependencies": {

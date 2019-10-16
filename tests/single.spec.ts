@@ -1,11 +1,12 @@
 import { dist } from "./utils";
+import { Options } from "../src/plugin";
 
 describe("single css value test", () => {
-  let options;
+  let options!: Options;
 
   beforeEach(() => {
     options = {
-      rules: [{ rx: "add(1).unit(rem)" }]
+      rules: { px: "add(1).unit(rem)" }
     };
   });
 
