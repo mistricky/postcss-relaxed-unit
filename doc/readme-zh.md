@@ -129,7 +129,7 @@ module.exports = {
 
 ```css
 .hello-relaxed-unit {
-  width: 8rx;
+  width: 18rx;
 }
 ```
 
