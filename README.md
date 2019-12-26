@@ -127,7 +127,7 @@ custom unit will output does not change missing `unit` Operator, `e.g.`
 
 ```css
 .hello-relaxed-unit {
-  width: 18rx;
+  width: 8rx;
 }
 ```
 
