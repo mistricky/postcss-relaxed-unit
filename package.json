@@ -26,7 +26,7 @@
   "homepage": "https://github.com/youncccat/postcss-relaxed-unit",
   "dependencies": {
     "bignumber.js": "^9.0.0",
-    "postcss": "^7.0.6"
+    "postcss": "^8.2.10"
   },
   "devDependencies": {
     "@logux/eslint-config": "^27.0.0",
