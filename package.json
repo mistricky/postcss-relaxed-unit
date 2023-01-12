@@ -42,7 +42,7 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^29.0.4",
     "typescript": "^3.6.3"
   },
   "eslintConfig": {
