@@ -32,7 +32,6 @@ npm i postcss-relaxed-unit -D
 yarn add postcss-relaxed-unit -D
 ```
 
-because `postcss-relaxed-unit` is depends on [PostCSS], you need to install postcss.
 
 因为 `postcss-relaxed-unit` 依赖于[PostCSS], 你必须要安装 postcss
 
